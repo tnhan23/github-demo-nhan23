@@ -7,8 +7,6 @@ import {
     Modal,
     Button,
     Form,
-    ModalHeader,
-    ModalTitle,
     ModalBody,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
