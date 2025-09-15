@@ -1,27 +1,93 @@
-.table-container {
-    width: 100%;
-    overflow-x: auto;
+/* ============== LichLamViec.css (FINAL) ============== */
+
+/* HEADER */
+.lich-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
-table {
+.lich-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Hàng 2: calendar + 2 nút */
+.lich-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     width: 100%;
-    border-collapse: collapse;
+}
+
+/* calendar bên trái */
+.calendar-part {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* actions bên phải */
+.actions {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    /* đẩy nút sang phải */
+}
+
+/* nút tạo ca làm / tạo nghỉ */
+.actions .nut-tao-ca-lam,
+.actions .nut-tao-nghi {
+    flex: 0 0 auto;
+    /* không bị kéo giãn */
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.actions .nut-tao-ca-lam {
+    background-color: #3b82f6;
+}
+
+.actions .nut-tao-ca-lam:hover {
+    background-color: #2563eb;
+}
+
+.actions .nut-tao-nghi {
+    background-color: #ef4444;
+}
+
+.actions .nut-tao-nghi:hover {
+    background-color: #dc2626;
+}
+
+/* TABLE */
+table {
+    width: 100% !important;
     table-layout: fixed;
+    border-collapse: collapse;
     background: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     border-radius: 6px;
     overflow: hidden;
 }
 
 table th,
 table td {
-    width: 20%;
-    border: 1px solid #ddd;
     padding: 8px;
     font-size: 14px;
     text-align: center;
-    word-wrap: break-word;
-    white-space: normal;
+    border: 1px solid #ddd;
 }
 
 table th {
@@ -29,6 +95,7 @@ table th {
     font-weight: 600;
 }
 
+/* action buttons trong table */
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -36,71 +103,55 @@ table th {
 }
 
 .action-buttons button {
-    padding: 4px 8px;
-    font-size: 13px;
+    padding: 6px 10px;
+    font-size: 14px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.action-buttons .edit {
-    background: #3b82f6;
     color: #fff;
 }
 
-.action-buttons .edit:hover {
-    background: #2563eb;
-}
+/* ============== RESPONSIVE ============== */
+/* tablet/small screen */
+@media (max-width: 600px) {
 
-.action-buttons .delete {
-    background: #ef4444;
-    color: #fff;
-}
-
-.action-buttons .delete:hover {
-    background: #dc2626;
-}
-
-.action-buttons .cancel {
-    background: #9ca3af;
-    color: #fff;
-}
-
-.action-buttons .cancel:hover {
-    background: #6b7280;
-}
-
-@media (max-width: 768px) {
+    .actions .nut-tao-ca-lam,
+    .actions .nut-tao-nghi {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
 
     table th,
     table td {
-        font-size: 12px;
+        font-size: 13px;
         padding: 6px;
-        width: 20%;
-    }
-
-    .action-buttons {
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-
-    .action-buttons button {
-        font-size: 11px;
-        padding: 3px 6px;
     }
 }
 
-@media (max-width: 480px) {
-
-    table th,
-    table td {
-        font-size: 11px;
-        padding: 4px;
+/* mobile nhỏ */
+@media (max-width: 420px) {
+    .lich-header-row {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 6px;
     }
 
-    .action-buttons button {
-        font-size: 10px;
-        padding: 2px 5px;
+    .calendar-part {
+        order: 1;
+        width: 100%;
+    }
+
+    .actions {
+        order: 2;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .actions .nut-tao-ca-lam,
+    .actions .nut-tao-nghi {
+        flex: 1;
+        height: 40px;
+        font-size: 14px;
     }
 }

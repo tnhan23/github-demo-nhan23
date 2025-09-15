@@ -232,38 +232,50 @@ function LichLamViec() {
         };
     }, [showCalendar]);
 
+    const changeVNDate = (dateStr) => {
+        if (!dateStr) return "";
+        const [year, month, day] = dateStr.split("-");
+        return `${day}-${month}-${year}`;
+    };
+
     return (
         <div className="container py-4">
-            {/* Header */}
-            <div className="d-flex align-items-center justify-content-between mb-3">
-                <h2 className="fw-bold">📅 Lịch Làm Việc</h2>
-                <div>
-                    <span className="me-3 fw-semibold">
-                        {monthSelected
-                            ? `Tháng ${monthSelected.getMonth() + 1}/${monthSelected.getFullYear()
-                            }`
-                            : `Tháng ${today.getMonth() + 1}/${today.getFullYear()}`}
-                    </span>
-                    <button
-                        onClick={() => setShowCalendar(!showCalendar)}
-                        className="btn btn-outline-secondary me-2"
-                    >
-                        <FaRegCalendarAlt size={18} />
-                    </button>
-                    <button
-                        className="btn btn-primary me-2"
-                        onClick={() => setShowAddModal(true)}
-                    >
-                        + Tạo ca làm
-                    </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => setShowDayOffModal(true)}
-                    >
-                        + Tạo ca nghỉ
-                    </button>
+
+            <div className="lich-header">
+                <h2>📅 Lịch Làm Việc</h2>
+                <div className="lich-header-row">
+                    <div className="calendar-part">
+                        <span className="fw-semibold">
+                            {monthSelected
+                                ? `Tháng ${monthSelected.getMonth() + 1}/${monthSelected.getFullYear()}`
+                                : `Tháng ${today.getMonth() + 1}/${today.getFullYear()}`}
+                        </span>
+                        <button
+                            onClick={() => setShowCalendar(!showCalendar)}
+                            className="btn btn-outline-secondary"
+                        >
+                            <FaRegCalendarAlt size={18} />
+                        </button>
+                    </div>
+
+                    <div className="actions">
+                        <button
+                            className="nut-tao-ca-lam"
+                            onClick={() => setShowAddModal(true)}
+                        >
+                            + Tạo
+                        </button>
+                        <button
+                            className="nut-tao-nghi"
+                            onClick={() => setShowDayOffModal(true)}
+                        >
+                            + Tạo nghỉ
+                        </button>
+                    </div>
                 </div>
             </div>
+
+
 
             {/* Calendar popup */}
             {showCalendar && (
@@ -311,7 +323,7 @@ function LichLamViec() {
                         {tatCaLichLam &&
                             tatCaLichLam.map((lich) => (
                                 <tr key={lich.id}>
-                                    <td>{lich.ngay}</td>
+                                    <td>{changeVNDate(lich.ngay)}</td>
                                     <td>
                                         {lich.soGio > 0 ? (
                                             <span className="badge bg-success">{lich.soGio}h</span>
